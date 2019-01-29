@@ -64,7 +64,7 @@ function addGrid(size){
     for (var j=0;j<=parseInt(size);j++){
         console.log("second"+i+j)
       grid[i][j]=0;
-      textBlock += "<div class='dot emptyCell cell col-md-" + (Math.floor(12/size)) + "' id='col" + i + "-" + j + "'></div>";
+      textBlock += "<div class='dot emptyCell cell col-sm-" + (Math.floor(12/size)) + "' id='col" + i + "-" + j + "'></div>";
 
     }
     console.log("closing Div")
@@ -73,7 +73,25 @@ function addGrid(size){
   }
   $("#gridSpot").append(textBlock);
 }
+var result = 0;
+function score(ban,che,pea,pin,str) {
+  result = (ban * 10 + che * 20 + pea * 40 + pin * 80 + str * 160);
+  return result;
+}
 
+function timeStart() {
+  var myVar = setInterval(myTimer, 1000);
+  var timeLeft = 30;
+  function myTimer() {
+    if (timeLeft > 0){
+    	timeLeft--;
+    	document.getElementById("timer").innerHTML = timeLeft;
+    } else {
+      clearInterval(myVar);
+      document.getElementById("timer").innerHTML = "Game Over";
+    }
+  }
+}
 
 var pacMan = new PacMan();
 
@@ -83,9 +101,50 @@ $(document).ready(function() {
   document.addEventListener("keydown", function(event) {
     pacMan.move(event);
   });
-  $("#openShop").click(function(){
-    $("#gridSpot").toggle();
-    $("#shopSpot").toggle();
-
+  var bananaNum=0;
+  var cherryNum=0;
+  var pearNum=0;
+  var pineappleNum=0;
+  var strawberryNum=0;
+  $('#banana').click(function(){
+    if(pacMan.dots>=20){
+      pacMan.dots-=20;
+      bananaNum++;
+      $("span#numBanana").text(bananaNum);
+      $("span#dotAmount").text(pacMan.dots);
+    }
   });
+  $('#cherry').click(function(){
+    if(pacMan.dots>=40){
+      pacMan.dots-=40;
+      cherryNum++;
+      $("span#numCherry").text(cherryNum);
+      $("span#dotAmount").text(pacMan.dots);
+    }
+  });
+  $('#pear').click(function(){
+    if(pacMan.dots>=60){
+      pacMan.dots-=60;
+      pearNum++;
+      $("span#numPear").text(pearNum);
+      $("span#dotAmount").text(pacMan.dots);
+    }
+  });
+  $('#pineapple').click(function(){
+    if(pacMan.dots>=80){
+      pacMan.dots-=80;
+      pineappleNum++;
+      $("span#numPineapple").text(pineappleNum);
+      $("span#dotAmount").text(pacMan.dots);
+    }
+  });
+  $('#strawberry').click(function(){
+    if(pacMan.dots>=100){
+      pacMan.dots-=100;
+      strawberryNum++;
+      $("span#numStrawberry").text(strawberryNum);
+      $("span#dotAmount").text(pacMan.dots);
+    }
+  });
+  timeStart();
 });

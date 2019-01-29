@@ -21,20 +21,16 @@
   background-repeat: no-repeat;
 }
 
-#shopSpot{
-  height:240px;
-  background: green;
-  margin-bottom: 20px;
-}
-
 .fruit{
   width:60px;
 }
 .card {
-  width:200px;
-  margin:10px;
+  width:20%;
+  text-align: center;
 }
 .card-img-top{
+  margin-left:auto;
+  margin-right: auto;
+  margin-top:10px;
   width:60px;
-
 }

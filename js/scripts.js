@@ -19,22 +19,17 @@ PacMan.prototype.move = function(event) {
   } else if (event.which == 40) {
     this.nextX += 1;
   }
-  console.log(this);
   if (this.nextX < 0) {
     this.nextX = grid.length - 1;
-    console.log(this);
   }
   if (this.nextY < 0) {
     this.nextY = grid.length - 1;
-    console.log(this);
   }
   if (this.nextX == grid.length) {
     this.nextX = 0;
-    console.log(this);
   }
   if (this.nextY == grid.length) {
     this.nextY = 0;
-    console.log(this);
   }
   updatePos(this);
   this.x = this.nextX;
@@ -52,22 +47,18 @@ function updatePos(pac) {
     pac.dots++;
   }
   $("span#dotAmount").text(pac.dots);
-    console.log(pac);
 }
 var textBlock = "";
 function addGrid(size){
   for (var i=0;i<=parseInt(size);i++){
     grid[i] = [];
-    console.log("first"+i)
     textBlock += "<div class='row'>";
 
     for (var j=0;j<=parseInt(size);j++){
-        console.log("second"+i+j)
       grid[i][j]=0;
       textBlock += "<div class='dot emptyCell cell col-sm-" + (Math.floor(12/size)) + "' id='col" + i + "-" + j + "'></div>";
 
     }
-    console.log("closing Div")
     textBlock += "</div>";
 
   }
@@ -89,11 +80,19 @@ function timeStart() {
     } else {
       clearInterval(myVar);
       document.getElementById("timer").innerHTML = "Game Over";
+      $("#timer").toggle();
+      $("#scoreboard").toggle();
+      $("#score").text(score(bananaNum,cherryNum,pearNum,pineappleNum,strawberryNum));
     }
   }
 }
 
 var pacMan = new PacMan();
+var bananaNum=0;
+var cherryNum=0;
+var pearNum=0;
+var pineappleNum=0;
+var strawberryNum=0;
 
 $(document).ready(function() {
   addGrid(11);
@@ -101,11 +100,6 @@ $(document).ready(function() {
   document.addEventListener("keydown", function(event) {
     pacMan.move(event);
   });
-  var bananaNum=0;
-  var cherryNum=0;
-  var pearNum=0;
-  var pineappleNum=0;
-  var strawberryNum=0;
   $('#banana').click(function(){
     if(pacMan.dots>=20){
       pacMan.dots-=20;

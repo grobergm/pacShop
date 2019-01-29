@@ -15,6 +15,10 @@
 
 }
 
+#scoreboard {
+  display: none;
+}
+
 .dot{
   background-image:url('../imgs/dot.png');
   background-size:30%;

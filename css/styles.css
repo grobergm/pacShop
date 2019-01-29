@@ -1,0 +1,40 @@
+.cell {
+  background-color: lightgray;
+  border: 1px solid black;
+  height:100px;
+}
+
+.emptyCell{
+  background-image:none;
+}
+
+.pacAt{
+  background-image: url("../imgs/blackPac.jpg");
+  background-size:contain;
+  background-repeat: no-repeat;
+
+}
+
+.dot{
+  background-image:url('../imgs/dot.png');
+  background-size:30%;
+  background-repeat: no-repeat;
+}
+
+#shopSpot{
+  height:240px;
+  background: green;
+  margin-bottom: 20px;
+}
+
+.fruit{
+  width:60px;
+}
+.card {
+  width:200px;
+  margin:10px;
+}
+.card-img-top{
+  width:60px;
+
+}

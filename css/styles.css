@@ -1,7 +1,22 @@
+body{
+  font-family: 'Press Start 2P';
+  text-align: center;
+  background-color: #E7C008;
+}
+
+h1{
+   font-size: 90px;
+ }
+
+ #timer{
+   color:red;
+   font-size: 30px;
+ }
+
 .cell {
-  background-color: lightgray;
+  background-color: black;
   border: 1px solid black;
-  height:100px;
+  height:50px;
 }
 
 .emptyCell{
@@ -13,6 +28,10 @@
   background-size:contain;
   background-repeat: no-repeat;
 
+}
+
+#title{
+  width:100%;
 }
 
 #scoreboard {
@@ -30,7 +49,7 @@
 }
 .card {
   width:20%;
-  text-align: center;
+  background-color: #E75808;
 }
 .card-img-top{
   margin-left:auto;

@@ -1,36 +1,28 @@
 var grid=[];
 
+
 function PacMan() {
   this.x = 0;
   this.y = 0;
   this.nextX=0;
   this.nextY=0;
   this.dots = 0;
+  this.dir = 0;
   this.speed = 1;
 }
 
+
 PacMan.prototype.move = function(event) {
   if (event.which == 37) {
-    this.nextY -= 1;
+    this.dir = 1;
   } else if(event.which == 38) {
-    this.nextX -= 1;
+    this.dir = 2;
   } else if (event.which == 39) {
-    this.nextY += 1;
+    this.dir = 3;
   } else if (event.which == 40) {
-    this.nextX += 1;
+    this.dir = 4;
   }
-  if (this.nextX < 0) {
-    this.nextX = grid.length - 1;
-  }
-  if (this.nextY < 0) {
-    this.nextY = grid.length - 1;
-  }
-  if (this.nextX == grid.length) {
-    this.nextX = 0;
-  }
-  if (this.nextY == grid.length) {
-    this.nextY = 0;
-  }
+  slide = setInterval(moveMore(), 500);
   updatePos(this);
   this.x = this.nextX;
   this.y = this.nextY;
@@ -48,6 +40,7 @@ function updatePos(pac) {
   }
   $("span#dotAmount").text(pac.dots);
 }
+
 var textBlock = "";
 function addGrid(size){
   for (var i=0;i<=parseInt(size);i++){
@@ -70,7 +63,6 @@ function score(ban,che,pea,pin,str) {
   return result;
 }
 
-function timeStart() {
   var myVar = setInterval(myTimer, 1000);
   var timeLeft = 30;
   function myTimer() {
@@ -85,7 +77,7 @@ function timeStart() {
       $("#score").text(score(bananaNum,cherryNum,pearNum,pineappleNum,strawberryNum));
     }
   }
-}
+
 
 var pacMan = new PacMan();
 var bananaNum=0;
@@ -93,6 +85,51 @@ var cherryNum=0;
 var pearNum=0;
 var pineappleNum=0;
 var strawberryNum=0;
+
+
+var slide = setInterval(moveMore, 125);
+
+function moveMore() {
+  switch (pacMan.dir) {
+    case 0:
+      break;
+    case 1:
+      pacMan.nextY -= 1;
+      updatePos(pacMan);
+      pacMan.y = pacMan.nextY;
+      break;
+    case 2:
+      pacMan.nextX -= 1;
+      updatePos(pacMan);
+      pacMan.x = pacMan.nextX;
+      break;
+    case 3:
+      pacMan.nextY += 1;
+      updatePos(pacMan);
+      pacMan.y = pacMan.nextY;
+      break;
+    case 4:
+      pacMan.nextX += 1;
+      updatePos(pacMan);
+      pacMan.x = pacMan.nextX;
+      break;
+  }
+  if (pacMan.nextX < 0) {
+    pacMan.nextX = grid.length - 1;
+  }
+  if (pacMan.nextY < 0) {
+    pacMan.nextY = grid.length - 1;
+  }
+  if (pacMan.nextX == grid.length) {
+    pacMan.nextX = 0;
+  }
+  if (pacMan.nextY == grid.length) {
+    pacMan.nextY = 0;
+  }
+  updatePos(pacMan);
+  pacMan.x = pacMan.nextX;
+  pacMan.y = pacMan.nextY;
+}
 
 $(document).ready(function() {
   addGrid(11);
@@ -140,5 +177,4 @@ $(document).ready(function() {
       $("span#dotAmount").text(pacMan.dots);
     }
   });
-  timeStart();
 });
